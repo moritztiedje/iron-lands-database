@@ -1,6 +1,11 @@
 set global time_zone = '+00:00';
 create database ironlands;
 use ironlands;
+drop table marketlisting;
+drop table consumable;
+drop table playercharacter;
+drop table user;
+
 create table user (
 	username VARCHAR(50),
     password VARCHAR(50),
@@ -16,14 +21,16 @@ create table playercharacter (
     charisma SMALLINT,
     strength SMALLINT,
     agility SMALLINT,
-    copper SMALLINT,
-    silver SMALLINT,
-    gold SMALLINT,
+    copper INTEGER,
+    coordinatex smallint,
+    coordinatey smallint,
     primary key (username),
     constraint fk_username foreign key (username) references user(username)
 );
-insert into playercharacter (username, charactername, stomachState, intelligence, charisma, strength, agility, copper, silver, gold) values ('harald', 'Supa Boy', 0, 10, 10, 10, 10, 5, 5, 5);
-insert into playercharacter (username, charactername, stomachState, intelligence, charisma, strength, agility, copper, silver, gold) values ('test', 'Testman', 1, 8, 8, 8, 8, 0, 0, 1);
+insert into playercharacter (username, charactername, stomachState, intelligence, charisma, strength, agility, copper, coordinatex, coordinatey) 
+values ('harald', 'Supa Boy', 0, 10, 10, 10, 10, 100, 1, 2);
+insert into playercharacter (username, charactername, stomachState, intelligence, charisma, strength, agility, copper, coordinatex, coordinatey) 
+values ('test', 'Testman', 1, 8, 8, 8, 8, 10, 0, 0);
 create table consumable (
 	id int auto_increment,
 	username VARCHAR(50),
@@ -41,13 +48,10 @@ create table marketlisting (
     itemname VARCHAR(50),
     primary key (id)
 );
-insert into marketlisting (price, itemname) values (10, 'potato');
+insert into marketlisting (price, itemname) values (3, 'potato');
+insert into marketlisting (price, itemname) values (5, 'carrot');
+insert into marketlisting (price, itemname) values (5, 'beer');
 
 select * from user;
 select * from playercharacter;
 select * from consumable;
-drop table marketlisting;
-drop table consumable;
-drop table playercharacter;
-drop table user;
-
