@@ -1,8 +1,10 @@
 set global time_zone = '+00:00';
 create database ironlands;
 use ironlands;
+
 drop table marketlisting;
 drop table consumable;
+drop table traveljob;
 drop table playercharacter;
 drop table user;
 
@@ -22,15 +24,22 @@ create table playercharacter (
     strength SMALLINT,
     agility SMALLINT,
     copper INTEGER,
-    coordinatex smallint,
-    coordinatey smallint,
+    xcoordinate smallint,
+    ycoordinate smallint,
     primary key (username),
     constraint fk_username foreign key (username) references user(username)
 );
-insert into playercharacter (username, charactername, stomachState, intelligence, charisma, strength, agility, copper, coordinatex, coordinatey) 
+insert into playercharacter (username, charactername, stomachState, intelligence, charisma, strength, agility, copper, xcoordinate, ycoordinate) 
 values ('harald', 'Supa Boy', 0, 10, 10, 10, 10, 100, 1, 2);
-insert into playercharacter (username, charactername, stomachState, intelligence, charisma, strength, agility, copper, coordinatex, coordinatey) 
+insert into playercharacter (username, charactername, stomachState, intelligence, charisma, strength, agility, copper, xcoordinate, ycoordinate) 
 values ('test', 'Testman', 1, 8, 8, 8, 8, 10, 0, 0);
+create table traveljob (
+	username VARCHAR(50),
+    xcoordinate smallint,
+    ycoordinate smallint,
+    primary key (username),
+    constraint one_to_one_jobs foreign key (username) references playercharacter(username)
+);
 create table consumable (
 	id int auto_increment,
 	username VARCHAR(50),
@@ -55,3 +64,4 @@ insert into marketlisting (price, itemname) values (5, 'beer');
 select * from user;
 select * from playercharacter;
 select * from consumable;
+select * from traveljob;
