@@ -19,6 +19,7 @@ create table playercharacter (
 	username VARCHAR(50),
 	charactername VARCHAR(50),
     stomachState smallint,
+    nourishment smallint,
 	intelligence SMALLINT,
     charisma SMALLINT,
     strength SMALLINT,
@@ -29,10 +30,10 @@ create table playercharacter (
     primary key (username),
     constraint fk_username foreign key (username) references user(username)
 );
-insert into playercharacter (username, charactername, stomachState, intelligence, charisma, strength, agility, copper, xcoordinate, ycoordinate) 
-values ('harald', 'Supa Boy', 0, 10, 10, 10, 10, 100, 1, 2);
-insert into playercharacter (username, charactername, stomachState, intelligence, charisma, strength, agility, copper, xcoordinate, ycoordinate) 
-values ('test', 'Testman', 1, 8, 8, 8, 8, 10, 0, 0);
+insert into playercharacter (username, charactername, stomachState, nourishment, intelligence, charisma, strength, agility, copper, xcoordinate, ycoordinate) 
+values ('harald', 'Supa Boy', 0, 0, 10, 10, 10, 10, 100, 1, 2);
+insert into playercharacter (username, charactername, stomachState, nourishment, intelligence, charisma, strength, agility, copper, xcoordinate, ycoordinate) 
+values ('test', 'Testman', 1, 0, 8, 8, 8, 8, 10, 0, 0);
 create table traveljob (
 	username VARCHAR(50),
     xcoordinate smallint,
