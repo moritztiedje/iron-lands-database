@@ -56,13 +56,16 @@ create table marketlisting (
 	id int auto_increment,
     price int,
     itemname VARCHAR(50),
-    primary key (id)
+    owner varchar(50),
+    primary key (id),
+    constraint fk_marketlisting foreign key (owner) references playercharacter(username)
 );
-insert into marketlisting (price, itemname) values (3, 'potato');
-insert into marketlisting (price, itemname) values (5, 'carrot');
-insert into marketlisting (price, itemname) values (5, 'beer');
+insert into marketlisting (price, itemname, owner) values (3, 'potato', 'test');
+insert into marketlisting (price, itemname, owner) values (5, 'carrot', 'test');
+insert into marketlisting (price, itemname, owner) values (5, 'beer', 'test');
 
 select * from user;
 select * from playercharacter;
 select * from consumable;
 select * from traveljob;
+select * from marketlisting;
