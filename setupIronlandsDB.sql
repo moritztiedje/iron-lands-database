@@ -63,6 +63,17 @@ create table marketlisting (
 insert into marketlisting (price, itemname, owner) values (3, 'potato', 'test');
 insert into marketlisting (price, itemname, owner) values (5, 'carrot', 'test');
 insert into marketlisting (price, itemname, owner) values (5, 'beer', 'test');
+create table farm (
+	id int auto_increment,
+    xcoordinate smallint,
+    ycoordinate smallint,
+    owner varchar(50),
+    state smallint,
+    progression smallint,
+    primary key (id),
+    constraint fk_potatofield foreign key (owner) references playercharacter(username)
+);
+insert into farm (xcoordinate, ycoordinate, owner, state, progression) values (0, 0, 'harald', 1, 0);
 
 select * from user;
 select * from playercharacter;
