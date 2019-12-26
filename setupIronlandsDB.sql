@@ -2,9 +2,11 @@ set global time_zone = '+00:00';
 create database ironlands;
 use ironlands;
 
+drop table farmjob;
 drop table marketlisting;
 drop table consumable;
 drop table traveljob;
+drop table farm;
 drop table playercharacter;
 drop table user;
 
@@ -71,12 +73,22 @@ create table farm (
     state smallint,
     progression smallint,
     primary key (id),
+    name varchar(50),
     constraint fk_potatofield foreign key (owner) references playercharacter(username)
 );
-insert into farm (xcoordinate, ycoordinate, owner, state, progression) values (0, 0, 'harald', 1, 0);
+insert into farm (xcoordinate, ycoordinate, owner, state, progression, name) values (1, 2, 'harald', 1, 0, 'Testfarm 1');
+create table farmjob (
+	worker varchar(50),
+    farm int,
+    primary key (worker),
+    constraint fk_farmjob_work foreign key (worker) references playercharacter(username),
+    constraint fk_farmjob_farm foreign key (farm) references farm(id)
+);
 
 select * from user;
 select * from playercharacter;
 select * from consumable;
 select * from traveljob;
+select * from farmjob;
 select * from marketlisting;
+select * from farm;
