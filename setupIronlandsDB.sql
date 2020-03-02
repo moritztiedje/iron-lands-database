@@ -84,11 +84,19 @@ create table farmjob (
     constraint fk_farmjob_work foreign key (worker) references playercharacter(username),
     constraint fk_farmjob_farm foreign key (farm) references farm(id)
 );
+create table farmjobpost (
+	id int,
+	salary int,
+    farm int,
+    primary key (id),
+    constraint fk_farmjobpost_farm foreign key (farm) references farm(id)
+);
+insert into farmjobpost (id, salary, farm) values (1, 10, 1);
 
 select * from user;
 select * from playercharacter;
 select * from consumable;
 select * from traveljob;
-select * from farmjob;
 select * from marketlisting;
 select * from farm;
+select * from farmjob;
