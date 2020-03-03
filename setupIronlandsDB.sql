@@ -6,6 +6,7 @@ drop table farmjob;
 drop table marketlisting;
 drop table consumable;
 drop table traveljob;
+drop table farmjobpost;
 drop table farm;
 drop table playercharacter;
 drop table user;
@@ -76,10 +77,13 @@ create table farm (
     name varchar(50),
     constraint fk_potatofield foreign key (owner) references playercharacter(username)
 );
-insert into farm (xcoordinate, ycoordinate, owner, state, progression, name) values (1, 2, 'harald', 1, 0, 'Testfarm 1');
+insert into farm (xcoordinate, ycoordinate, owner, state, progression, name) values (1, 2, 'harald', 1, 0, 'Testfarm');
+insert into farm (xcoordinate, ycoordinate, owner, state, progression, name) values (2, 2, 'harald', 1, 0, 'Far off x');
+insert into farm (xcoordinate, ycoordinate, owner, state, progression, name) values (1, 3, 'harald', 1, 0, 'Far off y');
 create table farmjob (
 	worker varchar(50),
     farm int,
+    locked boolean,
     primary key (worker),
     constraint fk_farmjob_work foreign key (worker) references playercharacter(username),
     constraint fk_farmjob_farm foreign key (farm) references farm(id)
@@ -92,6 +96,15 @@ create table farmjobpost (
     constraint fk_farmjobpost_farm foreign key (farm) references farm(id)
 );
 insert into farmjobpost (id, salary, farm) values (1, 10, 1);
+insert into farmjobpost (id, salary, farm) values (2, 12, 2);
+insert into farmjobpost (id, salary, farm) values (3, 10, 3);
+create table duepayment (
+	id int,
+    amount smallint,
+    receiver varchar(50),
+    primary key (id),
+    constraint fk_duepayment_receiver foreign key (receiver) references playercharacter(username)
+)
 
 select * from user;
 select * from playercharacter;
@@ -100,3 +113,5 @@ select * from traveljob;
 select * from marketlisting;
 select * from farm;
 select * from farmjob;
+select * from farmjobpost;
+select * from duepayment;
