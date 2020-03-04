@@ -2,6 +2,7 @@ set global time_zone = '+00:00';
 create database ironlands;
 use ironlands;
 
+drop table duepayment;
 drop table farmjob;
 drop table marketlisting;
 drop table consumable;
@@ -92,12 +93,14 @@ create table farmjobpost (
 	id int,
 	salary int,
     farm int,
+    poster varchar(50),
     primary key (id),
-    constraint fk_farmjobpost_farm foreign key (farm) references farm(id)
+    constraint fk_farmjobpost_farm foreign key (farm) references farm(id),
+    constraint fk_farmjobpost_poster foreign key (poster) references user(username)
 );
-insert into farmjobpost (id, salary, farm) values (1, 10, 1);
-insert into farmjobpost (id, salary, farm) values (2, 12, 2);
-insert into farmjobpost (id, salary, farm) values (3, 10, 3);
+insert into farmjobpost (id, salary, farm, poster) values (1, 10, 1, 'harald');
+insert into farmjobpost (id, salary, farm, poster) values (2, 12, 2, 'harald');
+insert into farmjobpost (id, salary, farm, poster) values (3, 10, 3, 'harald');
 create table duepayment (
 	id int,
     amount smallint,
