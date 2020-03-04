@@ -107,7 +107,9 @@ create table duepayment (
     receiver varchar(50),
     primary key (id),
     constraint fk_duepayment_receiver foreign key (receiver) references playercharacter(username)
-)
+);
+insert into duepayment (id, amount, receiver) values (1, 10, 'harald');
+insert into duepayment (id, amount, receiver) values (2, -7, 'harald');
 
 select * from user;
 select * from playercharacter;
